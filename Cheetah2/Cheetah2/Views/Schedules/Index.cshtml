@@ -1,0 +1,103 @@
+﻿@model IEnumerable<Cheetah2.Models.Schedule>
+
+@{
+    ViewBag.Title = "Schedules";
+}
+
+<h2>Schedule</h2>
+
+<p>
+    @Html.ActionLink("Create New", "../User/Index")
+</p>
+
+@using (Html.BeginForm("ScheduleSelect"))
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="row">
+
+        <div class="col-md-4">
+            <p>Please Select A Schedule.</p>
+        </div>
+        <div class="col-md-4">
+
+            <p>
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                @Html.DropDownList("SelectedSemester", ViewBag.SemList as SelectList, "Select A Semster")
+            </p>
+
+        </div>
+        <div class="col-md-4">
+            <p>
+            <input type="submit" value="Submit Request" id="SubmitReport" class="btn btn-info btn-sm" style="height:30px; color:white; " />
+                </p>
+        </div>
+    </div>
+
+}
+<div class="row">
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Semester)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Course)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Section)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Location)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TimeIn)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TimeOut)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Days)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Professor)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Semester)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Course)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Section)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Location)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TimeIn)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TimeOut)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Days)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Professor)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { semester = item.Semester, course = item.Course, section = item.Section }) |
+            @Html.ActionLink("Details", "Details", new { semester = item.Semester, course = item.Course, section = item.Section }) |
+            @Html.ActionLink("Delete", "Delete", new { semester = item.Semester, course = item.Course, section = item.Section })
+        </td>
+    </tr>
+}
+
+</table>
+    </div>

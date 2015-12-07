@@ -1,0 +1,119 @@
+﻿@model Cheetah2.Models.Schedule
+
+@{
+    ViewBag.Title = "Scheduling";
+}
+
+<h2>Scheduling</h2>
+<p>Please use the drop down boxes to select each component of the schedule, then press the submit button.</p>
+
+<div>
+@using (Html.BeginForm("ScheduleSubmit"))
+{
+    @Html.AntiForgeryToken()
+    <table class="table">
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <tr>
+            <th>
+                Semester
+            </th>
+            <th>
+                Courses
+            </th>
+            <th>
+                Section
+            </th>
+            <th>
+                Location
+            </th>
+            <th>
+                Time In
+            </th>
+            <th>
+                Time Out
+            </th>
+            @*<th>
+                M
+            </th>
+            <th>
+                T
+            </th>
+            <th>
+                W
+            </th>
+            <th>
+                R
+            </th>
+            <th>
+                F
+            </th>*@
+            <th>
+                Days
+            </th>
+            <th>
+                Professor
+            </th>
+        </tr>
+        <tr>
+            <th>
+                @Html.DropDownListFor(Model => Model.Semester, (SelectList)ViewBag.SemList, "Select Semester")
+        
+            </th>
+            <th>
+                @Html.DropDownListFor(Model => Model.Course, (SelectList)ViewBag.Courses, "Select Course")
+                
+            </th>
+            <th>
+                @Html.DropDownListFor(Model => Model.Section, (SelectList)ViewBag.Sections)
+               
+            </th>
+            <th>
+                @Html.DropDownListFor(Model => Model.Location, (SelectList)ViewBag.Rooms, "Select Room")
+                
+            </th>
+            <th>
+                @Html.EditorFor(m => m.TimeIn, new { type = "text", id = "TimeIn" })
+                @Html.ValidationMessageFor(model => model.TimeIn, "", new { @class = "text-danger" })
+               
+            </th>
+            <th>
+                @Html.EditorFor(m => m.TimeOut, new { type = "text", id = "TimeOut" })
+                @Html.ValidationMessageFor(model => model.TimeOut, "", new { @class = "text-danger" })
+ 
+            </th>
+            <td>
+                @Html.TextBoxFor(model => model.Days)
+            </td>
+            @*<th>
+               @Html.TextBoxFor(model => model.Days)
+                @Html.CheckBox("WeekM")
+            </th>
+            <th>
+                @Html.CheckBox("WeekT")
+            </th>
+            <th>
+                @Html.CheckBox("WeekW")
+            </th>
+            <th>
+                @Html.CheckBox("WeekR")
+            </th>
+            <th>
+                @Html.CheckBox("WeekF")
+            </th>*@
+            <th>
+                @Html.DropDownListFor(Model => Model.Professor, (SelectList)ViewBag.Professors, "Select Professor")
+            </th>
+            <th>
+                <input type="submit" value="Submit Schedule" id="SubmitSchedule" class="btn btn-info btn-sm" style="height:30px; color:white; "/>
+            </th>
+        </tr>
+    </table>
+}
+
+</div>
+
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

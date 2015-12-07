@@ -1,0 +1,61 @@
+﻿@model IEnumerable<Cheetah2.Models.Schedule>
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+</head>
+<body>
+    <paragraph>
+        <chunk style="font-family:'Times New Roman'; font-weight:bold">@ViewBag.Title </chunk>
+    </paragraph>
+        <paragraph>
+            <chunk style="font-family:'Times New Roman'; font-weight:bold;">Creation Date: </chunk>
+            <chunk style="font-family:'Times New Roman';">@DateTime.Now.ToString("MM/dd/yyy")</chunk>
+        </paragraph>
+        <div>
+            <table width="100%" cellpadding="1.0" cellspacing="1.0" widths="10;7;8;8;8;5;10">
+                <row>
+                    <cell borderwidth="0.5" left="false" right="false" top="false" bottom="true">@Html.DisplayNameFor(model => model.Course)</cell>
+                    <cell borderwidth="0.5" left="false" right="false" top="false" bottom="true">@Html.DisplayNameFor(model => model.Section)</cell>
+                    <cell borderwidth="0.5" left="false" right="false" top="false" bottom="true">@Html.DisplayNameFor(model => model.Location)</cell>
+                    <cell borderwidth="0.5" left="false" right="false" top="false" bottom="true">Start Time</cell>
+                    <cell borderwidth="0.5" left="false" right="false" top="false" bottom="true">End Time</cell>
+                    <cell borderwidth="0.5" left="false" right="false" top="false" bottom="true">@Html.DisplayNameFor(model => model.Days)</cell>
+                    <cell borderwidth="0.5" left="false" right="false" top="false" bottom="true">@Html.DisplayNameFor(model => model.Professor)</cell>
+                </row>
+
+                @foreach (var item in Model)
+            {
+                    <row>
+                        <cell>@Html.DisplayFor(modelItem => item.Course)</cell>
+                    </row>
+                    <row>
+                        <cell>@Html.DisplayFor(modelItem => item.Section)</cell>
+                    </row>
+                    <row>
+                        <cell>@Html.DisplayFor(modelItem => item.Location)</cell>
+                    </row>
+                    <row>
+                        <cell>@Html.DisplayFor(modelItem => item.TimeIn)</cell>
+                    </row>
+                    <row>
+                        <cell>@Html.DisplayFor(modelItem => item.TimeOut)</cell>
+                    </row>
+                    <row>
+                        <cell>@Html.DisplayFor(modelItem => item.Days)</cell>
+                    </row>
+                    <row>
+                        <cell>@Html.DisplayFor(modelItem => item.Professor)</cell>
+                    </row>
+
+                }
+            </table>
+
+        </div>
+</body>
+</html>
